@@ -1,6 +1,6 @@
 FROM alpine:latest as builder
 
-MAINTAINER JAremko <w3techplaygound@gmail.com>
+MAINTAINER rudenoise <rudenoise@gmail.com>
 
 WORKDIR /tmp
 
@@ -38,6 +38,11 @@ COPY --from=builder /usr/local/share/vim/ /usr/local/share/vim/
 COPY ./vim.bash /root/
 
 RUN apk add --update --no-cache \
+        libice \
+        libsm \
+        libx11 \
+        libxt \
+        ncurses \
         git \
         bash \
         curl \
@@ -50,7 +55,7 @@ RUN apk add --update --no-cache \
         python2 && \
     python2 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
-    pip2 install --upgrade pip setuptools neovim websocket-client sexpdata && \
+    pip2 install --upgrade pip setuptools websocket-client sexpdata && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip2 /usr/bin/pip ; fi && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python2 /usr/bin/python; fi && \
     rm -r /root/.cache &&\

@@ -38,7 +38,7 @@ rm -fr code
 
 mv .bashrc .bashrc_orig
 
-wget https://raw.githubusercontent.com/rudenoise/nvim-docker-base/master/bash/.bashrc
+wget https://raw.githubusercontent.com/rudenoise/scala_vim/master/.bashrc 
 
 cat .bashrc_orig >> .bashrc
 
